@@ -29,14 +29,14 @@ menu = {
 resources = {
     "Water": 300,
     "Coffee": 100,
-    "Milk": 200
+    "Milk": 200,
+    "Profit": 0
 }
 
 penny = 0.01
 nickel = 0.05
 dime = 0.1
 quarter = 0.25
-profit = 0
 
 
 def is_resource_sufficient(par):
@@ -49,16 +49,14 @@ def is_resource_sufficient(par):
 
 
 def manage_resources(par):
-    global profit
-    for item in resources:
+    for item in menu[par]["ingredients"]:
         resources[item] -= menu[par]["ingredients"][item]
-    profit += menu[par]["cost"]
+    resources["Profit"] += menu[par]["cost"]
 
 
 def print_report():
     for item in resources:
         print(f"{item}: {resources[item]}")
-    print(f"Profit: {profit}")
     run_machine()
 
 
